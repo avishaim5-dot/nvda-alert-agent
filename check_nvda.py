@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 import os
 
 SYMBOL = "NVDA"
-UP_THRESHOLD = 185
+UP_THRESHOLD = 175
 DOWN_THRESHOLD = 170
 
 # ערכים מגיעים מה-Secrets שהגדרת בגיטהאב
