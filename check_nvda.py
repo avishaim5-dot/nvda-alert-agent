@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 import os
 
 SYMBOL = "NVDA"
-UP_THRESHOLD = 185
+UP_THRESHOLD = 171
 DOWN_THRESHOLD = 170
 
 # ערכים מגיעים מה-Secrets שהגדרת בגיטהאב
@@ -50,7 +50,7 @@ def main():
     print(f"NVDA last close: {price}")
 
     # לוגיקה של ההתראה
-    if price > 0: # UP_THRESHOLD:
+    if price > UP_THRESHOLD:
         subject = f"NVDA מעל {UP_THRESHOLD} – סגירה {price}"
         body = f"מניית NVDA נסגרה על {price}, שזה מעל {UP_THRESHOLD}."
         send_email(subject, body)
