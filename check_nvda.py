@@ -50,7 +50,7 @@ def main():
     print(f"NVDA last close: {price}")
 
     # לוגיקה של ההתראה
-    if price > 0 # UP_THRESHOLD:
+    if price > 0: # UP_THRESHOLD:
         subject = f"NVDA מעל {UP_THRESHOLD} – סגירה {price}"
         body = f"מניית NVDA נסגרה על {price}, שזה מעל {UP_THRESHOLD}."
         send_email(subject, body)
