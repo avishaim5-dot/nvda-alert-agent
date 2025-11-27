@@ -7,7 +7,7 @@ SYMBOL = "NVDA"
 UP_THRESHOLD = 185
 DOWN_THRESHOLD = 170
 
-# נקרא ערכים מה־Environment (שנגדיר כסודות בגיטהאב)
+# ערכים מגיעים מה-Secrets שהגדרת בגיטהאב
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 SMTP_USER = os.getenv("SMTP_USER")      # המייל שלך
@@ -17,10 +17,12 @@ TO_EMAIL = os.getenv("TO_EMAIL")        # לאן לשלוח (יכול להיות
 def send_email(subject: str, body: str):
     if not SMTP_USER or not SMTP_PASSWORD or not TO_EMAIL:
         print("Missing SMTP configuration")
+        print("SMTP_USER:", SMTP_USER)
+        print("TO_EMAIL:", TO_EMAIL)
         return
 
     msg = MIMEText(body, _charset="utf-8")
-    msg["Subject] = subject
+    msg["Subject"] = subject          # כאן הייתה הטעות – עכשיו זה מתוקן
     msg["From"] = SMTP_USER
     msg["To"] = TO_EMAIL
 
@@ -31,7 +33,7 @@ def send_email(subject: str, body: str):
 
     print("Email sent!")
 
-def get_last_close(symbol: str) -> float | None:
+def get_last_close(symbol: str):
     # מביא נתונים יומיים של 5 הימים האחרונים
     data = yf.download(symbol, period="5d", interval="1d")
     if data.empty:
